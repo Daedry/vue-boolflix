@@ -12,13 +12,67 @@
         <h2>Movies</h2>
         <div class="list" v-for="(movie, index) in movies" :key="index">
           <ul>
+            <li>
+              <img
+                :src="
+                  NotFoundImg(
+                    movie.poster_path,
+                    'http://image.tmdb.org/t/p/w200/' + movie.poster_path
+                  )
+                "
+              />
+            </li>
             <li>Titolo:{{ movie.title }}</li>
             <li>Titolo Originale: {{ movie.original_title }}</li>
             <li>
               Lingua: {{ movie.original_language }}
               <Flag :iso="changeFlags(movie.original_language)" />
             </li>
-            <li>Voto: {{ movie.vote_average }}</li>
+            <li>Voto: {{ votation(movie.vote_average) }}</li>
+            <li>
+              <div class="star">
+                <font-awesome-icon
+                  :class="
+                    votation(movie.vote_average) > 1
+                      ? 'yellow-star'
+                      : 'white-star'
+                  "
+                  icon="fa-solid fa-star"
+                />
+                <font-awesome-icon
+                  :class="
+                    votation(movie.vote_average) > 2
+                      ? 'yellow-star'
+                      : 'white-star'
+                  "
+                  icon="fa-solid fa-star"
+                />
+                <font-awesome-icon
+                  :class="
+                    votation(movie.vote_average) > 3
+                      ? 'yellow-star'
+                      : 'white-star'
+                  "
+                  icon="fa-solid fa-star"
+                />
+                <font-awesome-icon
+                  :class="
+                    votation(movie.vote_average) > 4
+                      ? 'yellow-star'
+                      : 'white-star'
+                  "
+                  icon="fa-solid fa-star"
+                />
+                <font-awesome-icon
+                  :class="
+                    votation(movie.vote_average) > 5
+                      ? 'yellow-star'
+                      : 'white-star'
+                  "
+                  icon="fa-solid fa-star"
+                />
+              </div>
+            </li>
           </ul>
         </div>
       </div>
@@ -27,14 +81,67 @@
         <h2>Series</h2>
         <div class="series list" v-for="(serie, i) in series" :key="i">
           <ul>
-            
+            <li>
+              <img
+                :src="
+                  NotFoundImg(
+                    serie.poster_path,
+                    'http://image.tmdb.org/t/p/w200/' + serie.poster_path
+                  )
+                "
+              />
+            </li>
             <li>Titolo: {{ serie.name }}</li>
             <li>Titolo Originale: {{ serie.original_name }}</li>
             <li>
               Lingua: {{ serie.original_language }}
               <Flag :iso="changeFlags(serie.original_language)" />
             </li>
-            <li>Voto: {{serie.vote_average}}</li>
+            <li>Voto: {{ votation(serie.vote_average) }}</li>
+            <li>
+              <div class="star">
+                <font-awesome-icon
+                  :class="
+                    votation(serie.vote_average) > 1
+                      ? 'yellow-star'
+                      : 'white-star'
+                  "
+                  icon="fa-solid fa-star"
+                />
+                <font-awesome-icon
+                  :class="
+                    votation(serie.vote_average) > 2
+                      ? 'yellow-star'
+                      : 'white-star'
+                  "
+                  icon="fa-solid fa-star"
+                />
+                <font-awesome-icon
+                  :class="
+                    votation(serie.vote_average) > 3
+                      ? 'yellow-star'
+                      : 'white-star'
+                  "
+                  icon="fa-solid fa-star"
+                />
+                <font-awesome-icon
+                  :class="
+                    votation(serie.vote_average) > 4
+                      ? 'yellow-star'
+                      : 'white-star'
+                  "
+                  icon="fa-solid fa-star"
+                />
+                <font-awesome-icon
+                  :class="
+                    votation(serie.vote_average) > 5
+                      ? 'yellow-star'
+                      : 'white-star'
+                  "
+                  icon="fa-solid fa-star"
+                />
+              </div>
+            </li>
           </ul>
         </div>
       </div>
@@ -86,6 +193,7 @@ export default {
           this.error = `Sorry there is a problem! ${error}`;
         });
     },
+
     searching() {
       console.log("Searching...");
       console.log(this.inputValue);
@@ -103,7 +211,22 @@ export default {
       }
     },
 
-    
+    NotFoundImg(img, full_img) {
+      if (img === null) {
+        img =
+          "https://printworks-manchester.com/cinema-poster/images/film-poster-placeholder.png";
+        return img;
+      } else {
+        return full_img;
+      }
+    },
+
+    votation(vote) {
+      // console.log('numero:', vote / 2)
+      const newVote = Math.round(vote / 2);
+      // console.log('nuovo numero:', newVote);
+      return newVote;
+    },
   },
 };
 </script>
