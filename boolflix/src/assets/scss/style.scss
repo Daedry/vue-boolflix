@@ -1,18 +1,43 @@
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-body {
-  background-color: rgba(95, 158, 160, 0.733);
-}
-
 #app {
   font-family: "Poppins", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  // -webkit-font-smoothing: antialiased;
+  // -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  box-shadow: inset 0px 4px 14px rgb(146 146 146 / 31%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #666;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+
+/* COMMON */
+
+body {
+  background-color: #b8111f;
 }
 
 .yellow-star{
@@ -21,4 +46,19 @@ body {
 
 .white-star{
   color: white;
+}
+
+li{
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+/* UTILITY */
+
+.d-flex{
+  display: flex;
 }

@@ -1,163 +1,101 @@
 <template>
   <div id="app">
     <header>
-      <form action="" @submit.prevent="searching">
-        <input type="text" placeholder=" search" v-model="inputValue" />
-        <button @click="callApi()">Search</button>
-      </form>
+      <div class="nav-bar d-flex">
+        <div class="nav-left d-flex">
+          <div class="logo">
+            <img height="40" src="@/assets/img/boolflix.png" alt="" />
+          </div>
+          <div>
+            <ul class="d-flex">
+              <li>
+                <a href="#"> Home </a>
+              </li>
+              <li>
+                <a href="#"> Serie Tv </a>
+              </li>
+              <li>
+                <a href="#"> Film </a>
+              </li>
+              <li>
+                <a href="#"> Originali </a>
+              </li>
+              <li>
+                <a href="#"> Aggiunti di recente </a>
+              </li>
+              <li>
+                <a href="#"> La mia lista </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- /.nav-left -->
+
+        <div class="nav-right">
+          <form action="" @submit.prevent="searching">
+            <input type="text" placeholder=" search" v-model="inputValue" />
+            <button @click="callApi()">Search</button>
+          </form>
+        </div>
+        <!-- /.nav-right -->
+      </div>
     </header>
+    <!-- /.header -->
 
     <main>
       <div class="movies">
         <h2>Movies</h2>
-        <div class="list" v-for="(movie, index) in movies" :key="index">
-          <ul>
-            <li>
-              <img
-                :src="
-                  NotFoundImg(
-                    movie.poster_path,
-                    'http://image.tmdb.org/t/p/w200/' + movie.poster_path
-                  )
-                "
-              />
-            </li>
-            <li>Titolo:{{ movie.title }}</li>
-            <li>Titolo Originale: {{ movie.original_title }}</li>
-            <li>
-              Lingua: {{ movie.original_language }}
-              <Flag :iso="changeFlags(movie.original_language)" />
-            </li>
-            <li>Voto: {{ votation(movie.vote_average) }}</li>
-            <li>
-              <div class="star">
-                <font-awesome-icon
-                  :class="
-                    votation(movie.vote_average) > 1
-                      ? 'yellow-star'
-                      : 'white-star'
-                  "
-                  icon="fa-solid fa-star"
-                />
-                <font-awesome-icon
-                  :class="
-                    votation(movie.vote_average) > 2
-                      ? 'yellow-star'
-                      : 'white-star'
-                  "
-                  icon="fa-solid fa-star"
-                />
-                <font-awesome-icon
-                  :class="
-                    votation(movie.vote_average) > 3
-                      ? 'yellow-star'
-                      : 'white-star'
-                  "
-                  icon="fa-solid fa-star"
-                />
-                <font-awesome-icon
-                  :class="
-                    votation(movie.vote_average) > 4
-                      ? 'yellow-star'
-                      : 'white-star'
-                  "
-                  icon="fa-solid fa-star"
-                />
-                <font-awesome-icon
-                  :class="
-                    votation(movie.vote_average) > 5
-                      ? 'yellow-star'
-                      : 'white-star'
-                  "
-                  icon="fa-solid fa-star"
-                />
-              </div>
-            </li>
-          </ul>
+        <div class="movies-list d-flex">
+          <div
+            class="poster-movie d-flex"
+            v-for="(movie, index) in movies"
+            :key="index"
+          >
+            <img
+              :src="
+                NotFoundImg(
+                  movie.poster_path,
+                  'http://image.tmdb.org/t/p/w200/' + movie.poster_path
+                )
+              "
+            />
+          </div>
         </div>
       </div>
 
       <div class="series">
         <h2>Series</h2>
-        <div class="series list" v-for="(serie, i) in series" :key="i">
-          <ul>
-            <li>
-              <img
-                :src="
-                  NotFoundImg(
-                    serie.poster_path,
-                    'http://image.tmdb.org/t/p/w200/' + serie.poster_path
-                  )
-                "
-              />
-            </li>
-            <li>Titolo: {{ serie.name }}</li>
-            <li>Titolo Originale: {{ serie.original_name }}</li>
-            <li>
-              Lingua: {{ serie.original_language }}
-              <Flag :iso="changeFlags(serie.original_language)" />
-            </li>
-            <li>Voto: {{ votation(serie.vote_average) }}</li>
-            <li>
-              <div class="star">
-                <font-awesome-icon
-                  :class="
-                    votation(serie.vote_average) > 1
-                      ? 'yellow-star'
-                      : 'white-star'
-                  "
-                  icon="fa-solid fa-star"
-                />
-                <font-awesome-icon
-                  :class="
-                    votation(serie.vote_average) > 2
-                      ? 'yellow-star'
-                      : 'white-star'
-                  "
-                  icon="fa-solid fa-star"
-                />
-                <font-awesome-icon
-                  :class="
-                    votation(serie.vote_average) > 3
-                      ? 'yellow-star'
-                      : 'white-star'
-                  "
-                  icon="fa-solid fa-star"
-                />
-                <font-awesome-icon
-                  :class="
-                    votation(serie.vote_average) > 4
-                      ? 'yellow-star'
-                      : 'white-star'
-                  "
-                  icon="fa-solid fa-star"
-                />
-                <font-awesome-icon
-                  :class="
-                    votation(serie.vote_average) > 5
-                      ? 'yellow-star'
-                      : 'white-star'
-                  "
-                  icon="fa-solid fa-star"
-                />
-              </div>
-            </li>
-          </ul>
+        <div class="series-list d-flex">
+          <div
+            class="poster-serie d-flex"
+            v-for="(serie, i) in series"
+            :key="i"
+          >
+            <img
+              :src="
+                NotFoundImg(
+                  serie.poster_path,
+                  'http://image.tmdb.org/t/p/w200/' + serie.poster_path
+                )
+              "
+            />
+          </div>
         </div>
       </div>
     </main>
+    <!-- /.main -->
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import { Flag } from "vue-flag-icon/components";
+// import { Flag } from "vue-flag-icon/components";
 // import state from "@/state";
-// import Flag from "@/node_modules/vue-flag-icon/components/icon/Flag.vue";
+
 export default {
   name: "App",
   components: {
-    Flag,
+    // Flag,
   },
   data() {
     return {
@@ -235,50 +173,81 @@ export default {
 @import "@/assets/scss/style.scss";
 
 header {
+  width: 100%;
+  // height: 10vh;
+  background-color: rgba(19, 1, 1, 0.918);
   text-align: center;
-  padding: 1.25rem 0;
+  padding: 0.75rem 0 0.4rem;
   border-bottom: 1px solid firebrick;
-  form {
-    // margin-bottom: 2rem;
-    // padding-top: 1rem;
-    input {
-      height: 35px;
-      border: none;
-      border-radius: 0.35rem;
-      margin-right: 1rem;
+  // position: fixed;
+  &:hover {
+    cursor: pointer;
+  }
+  .nav-bar {
+    justify-content: space-between;
+
+    .nav-left {
+      .logo {
+        margin: 0 2rem;
+      }
+
+      ul {
+        li {
+          padding: 0.65rem;
+          border-bottom: 4px solid transparent;
+          // border: 1px solid black;
+          &:hover {
+            background-color: #9e2a2a;
+            border-radius: 0.2rem;
+            border-bottom: 4px solid rgb(201, 140, 140);
+            &:hover a {
+              color: #47090f;
+              font-weight: 500;
+            }
+          }
+        }
+      }
     }
-    button {
-      padding: 0.5rem 0.75rem;
-      border: none;
-      border-radius: 0.35rem;
+    .nav-right {
+      form {
+        margin: 0.25rem 2rem 0;
+        input {
+          height: 35px;
+          border: none;
+          border-radius: 0.35rem;
+          margin-right: 1rem;
+        }
+        button {
+          padding: 0.5rem 0.75rem;
+          border: none;
+          border-radius: 0.35rem;
+        }
+      }
     }
   }
 }
+
 main {
-  display: flex;
-  justify-content: space-evenly;
   width: 100%;
+  height: 100%;
+  // height: 75vh;
   .movies,
   .series {
+    width: 100%;
     text-align: center;
-    .list {
-      padding: 2rem;
-      display: flex;
+    h2 {
+      // margin-top:;
+    }
+    .movies-list,
+    .series-list {
+      width: 210px;
       flex-wrap: wrap;
-      margin: 0 6rem;
-      ul {
-        width: 250px;
-        margin: 1rem 2rem;
-        padding: 1rem 0;
-        li {
-          text-align: left;
-          padding: 0.75rem;
-          list-style: none;
-          .flag {
-            width: 20px;
-            height: 16px;
-          }
-        }
+
+      // border: 2px solid black;
+
+      .poster-movie,
+      .poster-serie {
+        margin: 15px;
       }
     }
   }
