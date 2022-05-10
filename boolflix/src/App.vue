@@ -12,31 +12,45 @@
         <h2>Movies</h2>
         <div class="list" v-for="(movie, index) in movies" :key="index">
           <ul>
-            
             <li>Titolo:{{ movie.title }}</li>
             <li>Titolo Originale: {{ movie.original_title }}</li>
             <li>
               Lingua: {{ movie.original_language }}
+              <Flag :iso="changeFlags(movie.original_language)" />
             </li>
             <li>Voto: {{ movie.vote_average }}</li>
-            
           </ul>
         </div>
       </div>
 
-      
+      <div class="series">
+        <h2>Series</h2>
+        <div class="series list" v-for="(serie, i) in series" :key="i">
+          <ul>
+            
+            <li>Titolo: {{ serie.name }}</li>
+            <li>Titolo Originale: {{ serie.original_name }}</li>
+            <li>
+              Lingua: {{ serie.original_language }}
+              <Flag :iso="changeFlags(serie.original_language)" />
+            </li>
+            <li>Voto: {{serie.vote_average}}</li>
+          </ul>
+        </div>
+      </div>
     </main>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import { Flag } from "vue-flag-icon/components";
 // import state from "@/state";
-// import Flag from "../node_modules/vue-flag-icon/components/icon/Flag.vue";
+// import Flag from "@/node_modules/vue-flag-icon/components/icon/Flag.vue";
 export default {
   name: "App",
   components: {
-    // Flag,
+    Flag,
   },
   data() {
     return {
@@ -76,6 +90,19 @@ export default {
       console.log("Searching...");
       console.log(this.inputValue);
     },
+
+    changeFlags(flag_nation) {
+      if (flag_nation === "en") {
+        return (flag_nation = "us");
+      } else if (flag_nation === "ja") {
+        return (flag_nation = "jp");
+      } else if (flag_nation === "da") {
+        return (flag_nation = "dk");
+      } else {
+        return flag_nation;
+      }
+    },
+
     
   },
 };
@@ -123,7 +150,7 @@ main {
         li {
           text-align: left;
           padding: 0.75rem;
-          // list-style: none;
+          list-style: none;
           .flag {
             width: 20px;
             height: 16px;
