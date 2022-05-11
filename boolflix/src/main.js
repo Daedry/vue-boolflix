@@ -18,6 +18,10 @@ library.add(faStar, faPlayCircle, faPlay)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
+import loader from "vue-ui-preloader";
+
+Vue.use(loader);
+
 Vue.config.productionTip = false
 
 new Vue({

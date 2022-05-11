@@ -1,5 +1,17 @@
 <template>
   <div id="app">
+    <!-- <loader
+      object="#ff9633"
+      color1="#ffffff"
+      color2="#17fd3d"
+      size="5"
+      speed="2"
+      bg="#343a40"
+      objectbg="#999793"
+      opacity="80"
+      name="circular"
+    >
+    </loader> -->
     <header>
       <div class="nav-bar d-flex">
         <div class="nav-left d-flex">
@@ -33,8 +45,8 @@
 
         <div class="nav-right">
           <form action="" @submit.prevent="searching" class="d-flex">
-            <input type="text" placeholder="search" v-model="inputValue" />
-            <button @click="callApi()">
+            <input type="search" placeholder="search" v-model="inputValue" />
+            <button :disabled="inputValue.length < 1">
               <svg viewBox="80 0 400 300" xmlns="http://www.w3.org/2000/svg">
                 <path
                   fill="#fff"
@@ -55,7 +67,7 @@
     <!-- /.header -->
 
     <main>
-      <div class="container">
+      <div class="container" v-if="movies && series">
         <h2>Movie</h2>
         <div class="cards-movie d-flex wrap">
           <div class="flip-card" v-for="(movie, index) in movies" :key="index">
@@ -253,6 +265,9 @@
         <!-- /.cards-series -->
       </div>
       <!-- /.container -->
+      <div class="start d-flex" v-else>
+        <p>Start looking for a movie or TV show that interests you</p>
+      </div>
     </main>
     <!-- /.main -->
   </div>
@@ -270,9 +285,9 @@ export default {
   },
   data() {
     return {
-      inputValue: null,
-      movies: [],
-      series: [],
+      inputValue: "",
+      movies: null,
+      series: null,
       loading: true,
       error: null,
       API_movies:
@@ -282,11 +297,11 @@ export default {
     };
   },
   methods: {
-    callApi() {
+    callApi(query) {
       axios
         .all([
-          axios.get(`${this.API_movies}${this.inputValue}`),
-          axios.get(`${this.API_series}${this.inputValue}`),
+          axios.get(`${this.API_movies}${query}`),
+          axios.get(`${this.API_series}${query}`),
         ])
         .then((response) => {
           // console.log("response", response);
@@ -306,6 +321,8 @@ export default {
     searching() {
       console.log("Searching...");
       console.log(this.inputValue);
+      this.callApi(this.inputValue);
+      this.inputValue = "";
     },
 
     changeFlags(flag_nation) {
@@ -409,7 +426,7 @@ header {
 
             path {
               cursor: pointer;
-              animation: blob 5s infinite forwards;
+              animation: blob 8s infinite forwards;
               transform-origin: 50% 50%;
 
               &:hover {
@@ -428,10 +445,17 @@ header {
 }
 
 main {
+  
   .container {
     // background-color: blueviolet;
     width: 1620px;
     margin: 1rem auto;
+
+    h2{
+      padding-top: 1rem ;
+      text-align: center;
+      font-size: 40px;
+    }
 
     .cards-movie,
     .cards-series {
@@ -479,7 +503,7 @@ main {
             transform: rotateY(180deg);
             box-shadow: -3px 4px 15px 3px black;
             border-radius: 0.25rem;
-            background-image: linear-gradient(180deg, #660f08 ,  #182531);
+            background-image: linear-gradient(180deg, #660f08, #182531);
 
             .backdrop-img {
               position: relative;
@@ -501,14 +525,14 @@ main {
                   cursor: pointer;
                   // color: radial-gradient(circle, #df4756 80%, black 20%);
                   color: #dd1323;
-                  transform: scale(1.35);
+                  transform: scale(1.25);
                 }
               }
             }
 
             .info {
               text-align: left;
-              margin: .1rem 0.3rem 0;
+              margin: 0.1rem 0.3rem 0;
               div {
                 text-align: center;
                 font-size: 12.5px;
@@ -530,5 +554,16 @@ main {
       }
     }
   }
+
+  .start{
+    p{
+      justify-content: center;
+      align-content: center;
+      margin: 6rem auto;
+      font-size: 30px;
+      font-weight: 500;
+    }
+  }
 }
+
 </style>
