@@ -80,10 +80,11 @@ export default {
       position: absolute;
       bottom: 0;
       height: 2px;
-      width: 600px;
+      width: 700px;
       margin: 0 auto;
       background: #fff;
       margin-top: 150px;
+      border-radius: 2rem;
 
       .circle {
         position: absolute;

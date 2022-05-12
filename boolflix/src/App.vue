@@ -14,19 +14,19 @@
                 <a href="#"> Home </a>
               </li>
               <li>
-                <a href="#"> Serie Tv </a>
+                <a href="#"> Series </a>
               </li>
               <li>
                 <a href="#"> Film </a>
               </li>
               <li>
-                <a href="#"> Originali </a>
+                <a href="#"> Originals </a>
               </li>
               <li>
-                <a href="#"> Aggiunti di recente </a>
+                <a href="#"> Recently Added </a>
               </li>
               <li>
-                <a href="#"> La mia lista </a>
+                <a href="#"> My list </a>
               </li>
             </ul>
           </div>
@@ -56,7 +56,7 @@
     </header>
     <!-- /.header -->
 
-    <main>
+    <main >
       <div class="container" v-if="movies && series">
         <h2>Movie</h2>
         <div class="cards-movie d-flex wrap">
@@ -91,15 +91,15 @@
 
                 <div class="info">
                   <div>
-                    <span>Titolo: </span>
+                    <span>Title: </span>
                     {{ movie.title }}
                   </div>
                   <div>
-                    <span>Lingua: </span>
+                    <span>Language: </span>
                     <Flag :iso="changeFlags(movie.original_language)" />
                   </div>
                   <div class="star">
-                    voto:
+                    vote:
                     <font-awesome-icon
                       :class="
                         votation(movie.vote_average) > 1
@@ -188,16 +188,16 @@
                 <!-- /.backdrop-img -->
 
                 <div class="info">
-                  <div><span>Titolo: </span> {{ serie.title }}</div>
+                  <div><span>Title: </span> {{ serie.title }}</div>
                   <div>
-                    <span>Titolo Originale: </span> {{ serie.original_title }}
+                    <span>Original Title: </span> {{ serie.original_title }}
                   </div>
                   <div>
-                    <span>Lingua: </span>
+                    <span>Language: </span>
                     <Flag :iso="changeFlags(serie.original_language)" />
                   </div>
                   <div class="star">
-                    Voto:
+                    Vote:
                     <font-awesome-icon
                       :class="
                         votation(serie.vote_average) > 1
@@ -255,10 +255,12 @@
         <!-- /.cards-series -->
       </div>
       <!-- /.container -->
+      
       <div class="start d-flex" v-else>
         <p>Start looking for a movie or TV show that interests you</p>
       </div>
     </main>
+    
     <!-- /.main -->
   </div>
 </template>
@@ -282,6 +284,7 @@ export default {
       series: null,
       loading: true,
       error: null,
+      searchFound: true,
       API_movies:
         "https://api.themoviedb.org/3/search/movie?api_key=703dcef70eae227971386893d0cf25d8&language=it-IT&page=1&include_adult=false&query=",
       API_series:
@@ -356,6 +359,7 @@ export default {
       return newVote;
     },
   },
+
 };
 </script>
 
