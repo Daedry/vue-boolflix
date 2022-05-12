@@ -1,17 +1,7 @@
 <template>
   <div id="app">
-    <!-- <loader
-      object="#ff9633"
-      color1="#ffffff"
-      color2="#17fd3d"
-      size="5"
-      speed="2"
-      bg="#343a40"
-      objectbg="#999793"
-      opacity="80"
-      name="circular"
-    >
-    </loader> -->
+    <PreLoadear />
+
     <header>
       <div class="nav-bar d-flex">
         <div class="nav-left d-flex">
@@ -276,12 +266,14 @@
 <script>
 import axios from "axios";
 import { Flag } from "vue-flag-icon/components";
+import PreLoadear from "@/components/PreLoader.vue";
 // import state from "@/state";
 
 export default {
   name: "App",
   components: {
     Flag,
+    PreLoadear,
   },
   data() {
     return {
@@ -445,23 +437,23 @@ header {
 }
 
 main {
-  
   .container {
     // background-color: blueviolet;
-    width: 1620px;
+    width: 1470px;
     margin: 1rem auto;
 
-    h2{
-      padding-top: 1rem ;
+    h2 {
+      padding-top: 1rem;
       text-align: center;
       font-size: 40px;
     }
 
     .cards-movie,
     .cards-series {
+      margin-left: 0.75rem;
       .flip-card {
-        width: 300px;
-        height: 400px;
+        width: 265px;
+        height: 365px;
         perspective: 1000px;
         margin: 2rem 0.75rem;
         transition: 0.8s;
@@ -483,8 +475,8 @@ main {
 
           .flip-card-front,
           .flip-card-back {
-            width: 300px;
-            height: 400px;
+            width: 265px;
+            height: 365px;
             position: absolute;
             backface-visibility: hidden;
           }
@@ -540,7 +532,7 @@ main {
               }
 
               .plot {
-                height: 163px;
+                height: 130px;
                 text-overflow: ellipsis;
                 white-space: wrap;
                 overflow: hidden;
@@ -555,8 +547,8 @@ main {
     }
   }
 
-  .start{
-    p{
+  .start {
+    p {
       justify-content: center;
       align-content: center;
       margin: 6rem auto;
@@ -565,5 +557,4 @@ main {
     }
   }
 }
-
 </style>
