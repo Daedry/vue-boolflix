@@ -6,9 +6,8 @@
 
 #app {
   font-family: "Poppins", sans-serif;
-  // -webkit-font-smoothing: antialiased;
-  // -moz-osx-font-smoothing: grayscale;
-  // color: #2c3e50;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
   color: white;
 }
 
@@ -17,20 +16,24 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  box-shadow: inset 0px 4px 14px rgb(146 146 146 / 31%);
+  background: #182531;
+  background-image: linear-gradient(35deg, #ff0f22 28%, #cc0c1b , #990914 , #66060e , #66060e );
+  border-radius: 2rem;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: linear-gradient(#182531, rgba(24, 23, 23, 0.877) 40%, #182531);
+  border-radius: 2rem;
+
 }
+// #ff0f22, #cc0c1b, #990914, #66060e, #66060e
 
 ::-webkit-scrollbar-thumb:active {
-  background: #666;
+  background: rgb(252, 252, 252);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #666;
+  background: rgb(219, 217, 217);
 }
 
 /* COMMON */
@@ -41,7 +44,6 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%23330307' points='1600 160 0 460 0 350 1600 50'/%3E%3Cpolygon fill='%2366060e' points='1600 260 0 560 0 450 1600 150'/%3E%3Cpolygon fill='%23990914' points='1600 360 0 660 0 550 1600 250'/%3E%3Cpolygon fill='%23cc0c1b' points='1600 460 0 760 0 650 1600 350'/%3E%3Cpolygon fill='%23FF0F22' points='1600 800 0 800 0 750 1600 450'/%3E%3C/g%3E%3C/svg%3E");
   background-attachment: fixed;
   background-size: cover;
-  
 }
 .yellow-star {
   color: yellow;
@@ -89,4 +91,3 @@ a {
 .wrap {
   flex-wrap: wrap;
 }
-
